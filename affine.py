@@ -48,14 +48,6 @@ class Affine(object):
                 keyB = input( 'enter a value for b key: ')
                 return (keyA,keyB)
             
-    def getKeys(self):
-         while True:
-                  keysA = input( 'enter a value for a key: ')
-                  keysB = input( 'enter a value for b key: ')
-                  return (keysA, keysB)
-                
-  
-  
     def crypt(self, text, keys):
         """
         @param text: text to be encrypted
