@@ -43,6 +43,10 @@ def isUpperLetter(c):
         return True
     else:
         return False
+def changeKeyWord():
+    keyWord = raw_input("Choose a keyword: ").replace(" ","").lower()	# forcing key for encryption lowercase
+    return keyWord
+
 if __name__ == "__main__":
     import sys
     main(sys.argv)
