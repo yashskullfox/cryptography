@@ -2,6 +2,7 @@ from affine import Affine
 
 ciper = Affine()
 while True:
+    print("This program developed by Yashskullfox for Prof. Qian Wang OSS")
     que = raw_input ('Did you want to ENCRYPTED than press E and DECRYPTED than press D. (e/d)')
     if que == 'e':
         text = raw_input('Text --> ')

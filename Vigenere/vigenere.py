@@ -1,41 +1,40 @@
-def main(args):
-    if len(args) != 4:
-        printUsage()
-    elif args[1] == '-e':
-        print(encrypt(args[2], args[3]))
-    elif args[1] == '-d':
-        print(decrypt(args[2], args[3]))
-    else:
-        printUsage()
-def printUsage():
-    print("""
-    Usage: main -e <srouce string> <cipher> //Encrypt source string with the cipher by vigenere algorithm;
-           main -d <encrypted string> <cipher> //Decrypt encrypted string with the cipher by vigenere algorithm;
-    """)
-def encrypt(srcStr, cipher):
-    result = ''
-    j = 0
-    for i in range(len(srcStr)):
-        c = srcStr.upper()[i]
-        if isUpperLetter(c):
-            result += encryptChar(c, cipher.upper()[j])
-            j = (j + 1) % len(cipher)
-        else:
-            result += ' '
-    return result
+""" Cypher matrix handler """
 
-def decrypt(encStr, cipher):
-    result = ''
-    j = 0
-    for i in range(len(encStr)):
-        c = encStr.upper()[i]
-        if isUpperLetter(c):
-            result += decryptChar(c, cipher.upper()[j])
-            j = (j + 1) % len(cipher)
-        else:
-            result += ' '
-    return result
+from string import ascii_lowercase as l
 
-if __name__ == "__main__":
-    import sys
-    main(sys.argv)
+class CypherTable:
+        
+	def __init__(self):
+		self.matrix = [l[i:]+l[:i] for i in range(len(l))]
+
+	def cross(self, b, a):
+   		val1 = self.matrix[0].index(a)	
+		new_letter = [i for i in self.matrix if i[0] == b][0][val1]	
+   		return new_letter
+
+	def decross(self, b, a):
+   		val1 = self.matrix[0].index(a)	
+   		val2 = self.matrix[0].index(b)	
+   		new_letter = [i for i in self.matrix if i[val1] == b][0][0]	
+   		return new_letter
+
+	def __str__(self):
+		return "\n".join('|'.join(row) for row in self.matrix)		
+	def encrypt(self, string, key):
+		encryptedString = ""
+		keyRange = len(string) - len(key)
+		for i in range(keyRange):	
+			key += key[i]
+		
+		for i in range(len(string)):
+			encryptedString += self.cross(string[i], key[i])
+		return encryptedString
+
+	def decrypt(self, string, key):
+		decryptedString = ""
+		keyRange = len(string) - len(key)
+		for i in range(keyRange):	
+			key += key[i]	
+		for i in range(len(string)):
+			decryptedString += self.decross(string[i], key[i])
+		return decryptedString
