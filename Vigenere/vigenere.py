@@ -23,8 +23,7 @@ def encrypt(srcStr, cipher):
         else:
             result += ' '
     return result
-def encryptChar(sc, cc):
-    return chr((((ord(sc) - ord('A')) + (ord(cc) - ord('A'))) % 26) + ord('A'[0]))
+
 def decrypt(encStr, cipher):
     result = ''
     j = 0
@@ -36,16 +35,6 @@ def decrypt(encStr, cipher):
         else:
             result += ' '
     return result
-def decryptChar(ec, cc):
-    return chr((((ord(ec) + 26) - ord(cc)) % 26) + ord('A'))
-def isUpperLetter(c):
-    if c >= 'A' and c<= 'Z':
-        return True
-    else:
-        return False
-def changeKeyWord():
-    keyWord = raw_input("Choose a keyword: ").replace(" ","").lower()	# forcing key for encryption lowercase
-    return keyWord
 
 if __name__ == "__main__":
     import sys

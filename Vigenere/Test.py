@@ -4,12 +4,12 @@ from time import sleep
 keyWord = ""
 table = CypherTable()
 while(True):
-    que = raw_input ('Did you want to ENCRYPTED than press E and DECRYPTED than press D. (e/d)')
+    print("This program developed by Yashskullfox for Prof. Quang Wang OSS")
+    print("First, You have to choose keyword by presssing 'c' ")
+    que = raw_input ('Do you want to ENCRYPT than press E and DECRYPT than press D. (c/e/d)')
     sleep(0.2)	# output time control
     if que == 'c':  # 1 - Set Key
         keyWord = raw_input("Choose a keyword: ").replace(" ","").lower()	# forcing key for encryption lowercase
-        #elif (que != 1 or que != 0) and keyWord == "" :	# If user wants to encrypt/decrypt but no key was set
-        #print("You have to set a keyword first")
     elif que == 'e':		# 2 - Encrypt
         encryptedMessage = ""
         phrase = raw_input("Insert a message to encrypt: ").lower()	# forcing word to decryptn lowercase
